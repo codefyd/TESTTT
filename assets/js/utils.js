@@ -16,5 +16,19 @@ window.Utils = {
     if (!box) return;
     box.textContent = '';
     box.classList.add('d-none');
+  },
+
+  escapeHtml(value) {
+    return String(value ?? '')
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#039;');
+  },
+
+  toNumber(value) {
+    const n = parseFloat(value);
+    return isNaN(n) ? 0 : n;
   }
 };
