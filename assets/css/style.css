@@ -135,3 +135,38 @@ body {
 .nav-pills .nav-link.active {
   background: var(--primary);
 }
+
+.expense-row {
+  border: 1px dashed #cbd5e1;
+  border-radius: 1rem;
+  padding: .8rem;
+  background: #f8fbff;
+}
+
+.booking-actions {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  margin-top: .75rem;
+}
+
+.booking-actions .btn {
+  border-radius: 999px;
+}
+
+.modal-content {
+  border-radius: 1.25rem;
+  border: 0;
+}
+
+.form-control, .form-select {
+  border-radius: .9rem;
+}
+
+@media (max-width: 768px) {
+  .fc .fc-toolbar {
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+  }
+}
