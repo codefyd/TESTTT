@@ -1,5 +1,6 @@
 window.App = {
   async initializeAfterLogin() {
+    await Bookings.init();
     await Promise.all([
       Dashboard.load(),
       Bookings.loadCalendar()
