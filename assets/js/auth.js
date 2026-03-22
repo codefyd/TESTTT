@@ -18,8 +18,7 @@ window.Auth = {
       txt.textContent = 'جاري التحقق...';
       statusText.textContent = 'جاري التحقق...';
 
-      const result = await Api.call('verifyLogin', { code });
-      const payload = result?.success !== undefined ? result : { success: true, ...result };
+      const payload = await Api.call('verifyLogin', { code });
 
       if (!payload.success) {
         throw new Error(payload.message || 'رمز الدخول غير صحيح');
