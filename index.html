@@ -106,9 +106,16 @@
           <div class="row g-4">
             <div class="col-12 col-xl-8">
               <div class="card-soft">
+                <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+                  <h5 class="mb-0">التقويم</h5>
+                  <button class="btn btn-main btn-sm" id="openAddBookingBtn">
+                    <i class="fas fa-plus"></i> إضافة حجز
+                  </button>
+                </div>
                 <div id="calendar"></div>
               </div>
             </div>
+
             <div class="col-12 col-xl-4">
               <div class="card-soft">
                 <div class="d-flex justify-content-between align-items-center mb-3">
@@ -123,6 +130,112 @@
         </div>
       </div>
 
+    </div>
+  </div>
+
+  <!-- مودال الحجز -->
+  <div class="modal fade" id="bookingModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+      <div class="modal-content">
+        <form id="bookingForm">
+          <div class="modal-header">
+            <h5 class="modal-title" id="bookingModalTitle">إضافة حجز</h5>
+            <button type="button" class="btn-close m-0" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body">
+            <input type="hidden" id="bookingId" />
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">النوع</label>
+                <select id="bookingType" class="form-select" required>
+                  <option value="">اختر</option>
+                  <option value="زواج">زواج</option>
+                  <option value="ملكي">ملكي</option>
+                  <option value="تغطية">تغطية</option>
+                  <option value="أخرى">أخرى</option>
+                </select>
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">اسم العميل</label>
+                <input id="bookingName" class="form-control" required />
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">الجوال</label>
+                <input id="bookingPhone" class="form-control" />
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">التاريخ</label>
+                <input id="bookingDate" type="date" class="form-control" required />
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">المكان</label>
+                <input id="bookingPlace" class="form-control" />
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">الوقت</label>
+                <input id="bookingTime" class="form-control" placeholder="مثال: 08:00 م" />
+              </div>
+
+              <div class="col-12">
+                <label class="form-label">التفاصيل</label>
+                <textarea id="bookingDetails" class="form-control" rows="3"></textarea>
+              </div>
+
+              <div class="col-md-4">
+                <label class="form-label">المبلغ</label>
+                <input id="bookingAmount" type="number" min="0" step="0.01" class="form-control" value="0" />
+              </div>
+
+              <div class="col-md-4">
+                <label class="form-label">الواصل</label>
+                <input id="bookingDeposit" type="number" min="0" step="0.01" class="form-control" value="0" />
+              </div>
+
+              <div class="col-md-4">
+                <label class="form-label">المتبقي</label>
+                <input id="bookingRemaining" class="form-control" readonly />
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">إسناد إلى</label>
+                <select id="bookingAssignedTo" class="form-select">
+                  <option value="">بدون إسناد</option>
+                </select>
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">اسم المسند إليه</label>
+                <input id="bookingAssignedToName" class="form-control" readonly />
+              </div>
+            </div>
+
+            <hr class="my-4">
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h6 class="mb-0">المصروفات المرتبطة بالحجز</h6>
+              <button type="button" class="btn btn-outline-primary btn-sm" id="addExpenseRowBtn">
+                <i class="fas fa-plus"></i> إضافة مصروف
+              </button>
+            </div>
+
+            <div id="expenseRows" class="vstack gap-2"></div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-light" data-bs-dismiss="modal">إلغاء</button>
+            <button type="submit" class="btn btn-main" id="saveBookingBtn">
+              <i class="fas fa-save"></i> حفظ
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 
