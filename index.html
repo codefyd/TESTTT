@@ -1,20 +1,17 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>بوابة الوكالة</title>
-
   <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
-
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
@@ -24,9 +21,8 @@
         <div class="text-center mb-4">
           <div class="brand-icon mb-3"><i class="fas fa-layer-group"></i></div>
           <h1 class="h3 fw-bold mb-2">بوابة الوكالة</h1>
-          <p class="text-muted mb-0">نسخة GitHub Pages مرتبطة بـ Google Apps Script API</p>
+          <p class="text-muted mb-0">واجهة GitHub Pages مرتبطة بـ Google Apps Script</p>
         </div>
-
         <form id="loginForm">
           <div class="mb-3">
             <label class="form-label">رمز الدخول</label>
@@ -37,7 +33,6 @@
             <span id="loginBtnText">دخول</span>
           </button>
         </form>
-
         <div id="errorMessage" class="alert alert-danger mt-3 d-none"></div>
         <div class="status-line mt-3">الحالة: <span id="statusText">جاهز</span></div>
       </div>
@@ -48,57 +43,39 @@
         <div class="d-flex justify-content-between align-items-start gap-3 flex-wrap">
           <div>
             <h1 class="app-title mb-2">لوحة التحكم</h1>
-            <p class="app-subtitle mb-0">تم نقل الواجهة إلى GitHub وبقيت البيانات على Google Sheets / Apps Script</p>
+            <p class="app-subtitle mb-0">الواجهة على GitHub والخلفية على Apps Script + Google Sheets</p>
           </div>
           <div class="d-flex align-items-center gap-2 flex-wrap">
             <span class="badge text-bg-light px-3 py-2">المستخدم: <span id="currentUserNameValue">-</span></span>
-            <button id="logoutBtn" class="btn btn-outline-light btn-sm">
-              <i class="fas fa-right-from-bracket"></i> خروج
-            </button>
+            <button id="logoutBtn" class="btn btn-outline-light btn-sm"><i class="fas fa-right-from-bracket"></i> خروج</button>
           </div>
         </div>
       </div>
 
-      <ul class="nav nav-pills gap-2 mb-4" id="mainTabs" role="tablist">
-        <li class="nav-item">
-          <button class="nav-link active" id="dashboard-tab" data-bs-toggle="tab" data-bs-target="#dashboard" type="button">
-            لوحة التحكم
-          </button>
-        </li>
-        <li class="nav-item">
-          <button class="nav-link" id="bookings-tab" data-bs-toggle="tab" data-bs-target="#bookings" type="button">
-            الحجوزات
-          </button>
-        </li>
+      <ul class="nav nav-pills gap-2 mb-4 flex-wrap" id="mainTabs" role="tablist">
+        <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#dashboard" type="button">لوحة التحكم</button></li>
+        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#bookings" type="button">الحجوزات</button></li>
+        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#expenses" type="button">المصروفات</button></li>
+        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#targets" type="button">المستهدفات</button></li>
+        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#projects" type="button">المشاريع</button></li>
+        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#users" type="button">المستخدمون</button></li>
+        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#settings" type="button">الإعدادات</button></li>
       </ul>
 
       <div class="tab-content">
         <div class="tab-pane fade show active" id="dashboard">
-          <div class="row g-3">
-            <div class="col-12 col-md-6 col-xl-3">
-              <div class="stat-card">
-                <div class="stat-label">إجمالي الحجوزات</div>
-                <div class="stat-value" id="dash-bookings-total">0</div>
-              </div>
+          <div class="row g-3 mb-4">
+            <div class="col-12 col-md-6 col-xl-3"><div class="stat-card"><div class="stat-label">إجمالي الحجوزات</div><div class="stat-value" id="dash-bookings-total">0</div></div></div>
+            <div class="col-12 col-md-6 col-xl-3"><div class="stat-card"><div class="stat-label">إجمالي الإيرادات</div><div class="stat-value" id="dash-total-revenue">0</div></div></div>
+            <div class="col-12 col-md-6 col-xl-3"><div class="stat-card"><div class="stat-label">المستحقات</div><div class="stat-value" id="dash-receivables">0</div></div></div>
+            <div class="col-12 col-md-6 col-xl-3"><div class="stat-card"><div class="stat-label">صافي الربح</div><div class="stat-value" id="dash-net-profit">0</div></div></div>
+          </div>
+          <div class="card-soft">
+            <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+              <h5 class="mb-0">حجوزات اليوم من لوحة التحكم</h5>
+              <span id="dashboardTodaysLabel" class="text-muted small"></span>
             </div>
-            <div class="col-12 col-md-6 col-xl-3">
-              <div class="stat-card">
-                <div class="stat-label">إجمالي الإيرادات</div>
-                <div class="stat-value" id="dash-total-revenue">0</div>
-              </div>
-            </div>
-            <div class="col-12 col-md-6 col-xl-3">
-              <div class="stat-card">
-                <div class="stat-label">المستحقات</div>
-                <div class="stat-value" id="dash-receivables">0</div>
-              </div>
-            </div>
-            <div class="col-12 col-md-6 col-xl-3">
-              <div class="stat-card">
-                <div class="stat-label">صافي الربح</div>
-                <div class="stat-value" id="dash-net-profit">0</div>
-              </div>
-            </div>
+            <div id="dashboardTodaysBookings" class="vstack gap-2"></div>
           </div>
         </div>
 
@@ -108,14 +85,11 @@
               <div class="card-soft">
                 <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
                   <h5 class="mb-0">التقويم</h5>
-                  <button class="btn btn-main btn-sm" id="openAddBookingBtn">
-                    <i class="fas fa-plus"></i> إضافة حجز
-                  </button>
+                  <button class="btn btn-main btn-sm permission-bookings-write" id="openAddBookingBtn"><i class="fas fa-plus"></i> إضافة حجز</button>
                 </div>
                 <div id="calendar"></div>
               </div>
             </div>
-
             <div class="col-12 col-xl-4">
               <div class="card-soft">
                 <div class="d-flex justify-content-between align-items-center mb-3">
@@ -128,123 +102,122 @@
             </div>
           </div>
         </div>
-      </div>
 
-    </div>
-  </div>
-
-  <!-- مودال الحجز -->
-  <div class="modal fade" id="bookingModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-scrollable">
-      <div class="modal-content">
-        <form id="bookingForm">
-          <div class="modal-header">
-            <h5 class="modal-title" id="bookingModalTitle">إضافة حجز</h5>
-            <button type="button" class="btn-close m-0" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-
-          <div class="modal-body">
-            <input type="hidden" id="bookingId" />
-
-            <div class="row g-3">
-              <div class="col-md-6">
-                <label class="form-label">النوع</label>
-                <select id="bookingType" class="form-select" required>
-                  <option value="">اختر</option>
-                  <option value="زواج">زواج</option>
-                  <option value="ملكي">ملكي</option>
-                  <option value="تغطية">تغطية</option>
-                  <option value="أخرى">أخرى</option>
-                </select>
-              </div>
-
-              <div class="col-md-6">
-                <label class="form-label">اسم العميل</label>
-                <input id="bookingName" class="form-control" required />
-              </div>
-
-              <div class="col-md-6">
-                <label class="form-label">الجوال</label>
-                <input id="bookingPhone" class="form-control" />
-              </div>
-
-              <div class="col-md-6">
-                <label class="form-label">التاريخ</label>
-                <input id="bookingDate" type="date" class="form-control" required />
-              </div>
-
-              <div class="col-md-6">
-                <label class="form-label">المكان</label>
-                <input id="bookingPlace" class="form-control" />
-              </div>
-
-              <div class="col-md-6">
-                <label class="form-label">الوقت</label>
-                <input id="bookingTime" class="form-control" placeholder="مثال: 08:00 م" />
-              </div>
-
-              <div class="col-12">
-                <label class="form-label">التفاصيل</label>
-                <textarea id="bookingDetails" class="form-control" rows="3"></textarea>
-              </div>
-
-              <div class="col-md-4">
-                <label class="form-label">المبلغ</label>
-                <input id="bookingAmount" type="number" min="0" step="0.01" class="form-control" value="0" />
-              </div>
-
-              <div class="col-md-4">
-                <label class="form-label">الواصل</label>
-                <input id="bookingDeposit" type="number" min="0" step="0.01" class="form-control" value="0" />
-              </div>
-
-              <div class="col-md-4">
-                <label class="form-label">المتبقي</label>
-                <input id="bookingRemaining" class="form-control" readonly />
-              </div>
-
-              <div class="col-md-6">
-                <label class="form-label">إسناد إلى</label>
-                <select id="bookingAssignedTo" class="form-select">
-                  <option value="">بدون إسناد</option>
-                </select>
-              </div>
-
-              <div class="col-md-6">
-                <label class="form-label">اسم المسند إليه</label>
-                <input id="bookingAssignedToName" class="form-control" readonly />
-              </div>
+        <div class="tab-pane fade" id="expenses">
+          <div class="card-soft">
+            <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+              <h5 class="mb-0">المصروفات العامة</h5>
+              <button class="btn btn-main btn-sm permission-expenses-write" id="openExpenseModalBtn"><i class="fas fa-plus"></i> إضافة مصروف</button>
             </div>
-
-            <hr class="my-4">
-
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <h6 class="mb-0">المصروفات المرتبطة بالحجز</h6>
-              <button type="button" class="btn btn-outline-primary btn-sm" id="addExpenseRowBtn">
-                <i class="fas fa-plus"></i> إضافة مصروف
-              </button>
+            <div class="table-responsive">
+              <table class="table align-middle">
+                <thead><tr><th>السبب</th><th>القيمة</th><th>التاريخ</th><th>الحالة</th><th>ملاحظات</th><th>إجراءات</th></tr></thead>
+                <tbody id="expensesTableBody"></tbody>
+              </table>
             </div>
-
-            <div id="expenseRows" class="vstack gap-2"></div>
           </div>
+        </div>
 
-          <div class="modal-footer">
-            <button type="button" class="btn btn-light" data-bs-dismiss="modal">إلغاء</button>
-            <button type="submit" class="btn btn-main" id="saveBookingBtn">
-              <i class="fas fa-save"></i> حفظ
-            </button>
+        <div class="tab-pane fade" id="targets">
+          <div class="card-soft">
+            <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+              <h5 class="mb-0">المستهدفات</h5>
+              <button class="btn btn-main btn-sm permission-targets-write" id="openTargetModalBtn"><i class="fas fa-plus"></i> إضافة مستهدف</button>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-middle">
+                <thead><tr><th>الشهر</th><th>السنة</th><th>المستهدف</th><th>المحقق</th><th>المستحقات</th><th>المصروفات</th><th>صافي الربح</th><th>نسبة الإنجاز</th><th>ملاحظات</th><th>إجراءات</th></tr></thead>
+                <tbody id="targetsTableBody"></tbody>
+              </table>
+            </div>
           </div>
-        </form>
+        </div>
+
+        <div class="tab-pane fade" id="projects">
+          <div class="card-soft">
+            <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+              <h5 class="mb-0">المشاريع</h5>
+              <button class="btn btn-main btn-sm permission-projects-write" id="openProjectModalBtn"><i class="fas fa-plus"></i> إضافة مشروع</button>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-middle">
+                <thead><tr><th>اسم المشروع</th><th>العميل</th><th>الحالة</th><th>البداية</th><th>آخر تحديث</th><th>إجراءات</th></tr></thead>
+                <tbody id="projectsTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="users">
+          <div class="card-soft">
+            <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+              <h5 class="mb-0">المستخدمون</h5>
+              <span class="text-muted small">عرض فقط في هذه الحزمة</span>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-middle">
+                <thead><tr><th>الاسم</th><th>الرمز</th><th>الجوال</th><th>الحالة</th><th>التقويم</th></tr></thead>
+                <tbody id="usersTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="settings">
+          <div class="card-soft">
+            <div class="d-flex justify-content-between align-items-center mb-3"><h5 class="mb-0">الإعدادات العامة</h5></div>
+            <form id="settingsForm" class="row g-3">
+              <div class="col-md-6"><label class="form-label">معرف التقويم</label><input id="settingsCalendarId" class="form-control" required></div>
+              <div class="col-md-6"><label class="form-label">معرف مجلد الفواتير</label><input id="settingsInvoiceFolderId" class="form-control" required></div>
+              <div class="col-12"><label class="form-label">خطوات المشاريع (كل خطوة بسطر)</label><textarea id="settingsProjectSteps" class="form-control" rows="5"></textarea></div>
+              <div class="col-12"><button class="btn btn-main permission-settings-write" type="submit"><i class="fas fa-save"></i> حفظ الإعدادات</button></div>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+
+  <!-- Booking Modal -->
+  <div class="modal fade" id="bookingModal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-scrollable"><div class="modal-content"><form id="bookingForm"><div class="modal-header"><h5 class="modal-title" id="bookingModalTitle">إضافة حجز</h5><button type="button" class="btn-close m-0" data-bs-dismiss="modal"></button></div><div class="modal-body"><input type="hidden" id="bookingId" />
+  <div class="row g-3">
+    <div class="col-md-6"><label class="form-label">النوع</label><select id="bookingType" class="form-select" required><option value="">اختر</option><option value="زواج">زواج</option><option value="ملكي">ملكي</option><option value="تغطية">تغطية</option><option value="أخرى">أخرى</option></select></div>
+    <div class="col-md-6"><label class="form-label">اسم العميل</label><input id="bookingName" class="form-control" required /></div>
+    <div class="col-md-6"><label class="form-label">الجوال</label><input id="bookingPhone" class="form-control" /></div>
+    <div class="col-md-6"><label class="form-label">التاريخ</label><input id="bookingDate" type="date" class="form-control" required /></div>
+    <div class="col-md-6"><label class="form-label">المكان</label><input id="bookingPlace" class="form-control" /></div>
+    <div class="col-md-6"><label class="form-label">الوقت</label><input id="bookingTime" class="form-control" /></div>
+    <div class="col-12"><label class="form-label">التفاصيل</label><textarea id="bookingDetails" class="form-control" rows="3"></textarea></div>
+    <div class="col-md-4"><label class="form-label">المبلغ</label><input id="bookingAmount" type="number" min="0" step="0.01" class="form-control" value="0" /></div>
+    <div class="col-md-4"><label class="form-label">الواصل</label><input id="bookingDeposit" type="number" min="0" step="0.01" class="form-control" value="0" /></div>
+    <div class="col-md-4"><label class="form-label">المتبقي</label><input id="bookingRemaining" class="form-control" readonly /></div>
+    <div class="col-md-6"><label class="form-label">إسناد إلى</label><select id="bookingAssignedTo" class="form-select"><option value="">بدون إسناد</option></select></div>
+    <div class="col-md-6"><label class="form-label">اسم المسند إليه</label><input id="bookingAssignedToName" class="form-control" readonly /></div>
+  </div>
+  <hr class="my-4"><div class="d-flex justify-content-between align-items-center mb-3"><h6 class="mb-0">المصروفات المرتبطة بالحجز</h6><button type="button" class="btn btn-outline-primary btn-sm" id="addExpenseRowBtn"><i class="fas fa-plus"></i> إضافة مصروف</button></div><div id="expenseRows" class="vstack gap-2"></div>
+  </div><div class="modal-footer"><button type="button" class="btn btn-light" data-bs-dismiss="modal">إلغاء</button><button type="submit" class="btn btn-main" id="saveBookingBtn"><i class="fas fa-save"></i> حفظ</button></div></form></div></div></div>
+
+  <!-- Expense Modal -->
+  <div class="modal fade" id="expenseModal" tabindex="-1" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><form id="expenseForm"><div class="modal-header"><h5 class="modal-title">إضافة مصروف</h5><button type="button" class="btn-close m-0" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="row g-3"><div class="col-12"><label class="form-label">السبب</label><input id="expenseReason" class="form-control" required></div><div class="col-md-6"><label class="form-label">القيمة</label><input id="expenseValue" type="number" min="0" step="0.01" class="form-control" required></div><div class="col-md-6"><label class="form-label">التاريخ</label><input id="expenseDate" type="date" class="form-control"></div><div class="col-md-6"><label class="form-label">الحالة</label><select id="expenseStatus" class="form-select"><option value="معلق">معلق</option><option value="مدفوع">مدفوع</option></select></div><div class="col-12"><label class="form-label">ملاحظات</label><textarea id="expenseNotes" class="form-control" rows="3"></textarea></div></div></div><div class="modal-footer"><button type="button" class="btn btn-light" data-bs-dismiss="modal">إلغاء</button><button type="submit" class="btn btn-main">حفظ</button></div></form></div></div></div>
+
+  <!-- Target Modal -->
+  <div class="modal fade" id="targetModal" tabindex="-1" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><form id="targetForm"><div class="modal-header"><h5 class="modal-title" id="targetModalTitle">إضافة مستهدف</h5><button type="button" class="btn-close m-0" data-bs-dismiss="modal"></button></div><div class="modal-body"><input type="hidden" id="targetRowIndex"><div class="row g-3"><div class="col-md-6"><label class="form-label">الشهر</label><input id="targetMonth" type="number" min="1" max="12" class="form-control" required></div><div class="col-md-6"><label class="form-label">السنة</label><input id="targetYear" type="number" class="form-control" required></div><div class="col-12"><label class="form-label">المستهدف</label><input id="targetValue" type="number" min="0" step="0.01" class="form-control" required></div><div class="col-12"><label class="form-label">ملاحظات</label><textarea id="targetNotes" class="form-control" rows="3"></textarea></div></div></div><div class="modal-footer"><button type="button" class="btn btn-light" data-bs-dismiss="modal">إلغاء</button><button type="submit" class="btn btn-main">حفظ</button></div></form></div></div></div>
+
+  <!-- Project Modal -->
+  <div class="modal fade" id="projectModal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><form id="projectForm"><div class="modal-header"><h5 class="modal-title" id="projectModalTitle">إضافة مشروع</h5><button type="button" class="btn-close m-0" data-bs-dismiss="modal"></button></div><div class="modal-body"><input type="hidden" id="projectId"><div class="row g-3"><div class="col-md-6"><label class="form-label">اسم المشروع</label><input id="projectName" class="form-control" required></div><div class="col-md-6"><label class="form-label">اسم العميل</label><input id="projectClient" class="form-control"></div><div class="col-md-6"><label class="form-label">الحالة</label><input id="projectStatus" class="form-control"></div><div class="col-md-6"><label class="form-label">الوصف</label><input id="projectDescription" class="form-control"></div></div></div><div class="modal-footer"><button type="button" class="btn btn-light" data-bs-dismiss="modal">إلغاء</button><button type="submit" class="btn btn-main">حفظ</button></div></form></div></div></div>
 
   <script src="assets/js/config.js"></script>
   <script src="assets/js/api.js"></script>
   <script src="assets/js/utils.js"></script>
   <script src="assets/js/auth.js"></script>
+  <script src="assets/js/permissions.js"></script>
   <script src="assets/js/dashboard.js"></script>
   <script src="assets/js/bookings.js"></script>
+  <script src="assets/js/expenses.js"></script>
+  <script src="assets/js/targets.js"></script>
+  <script src="assets/js/projects.js"></script>
+  <script src="assets/js/users.js"></script>
+  <script src="assets/js/settings.js"></script>
   <script src="assets/js/app.js"></script>
 </body>
 </html>
